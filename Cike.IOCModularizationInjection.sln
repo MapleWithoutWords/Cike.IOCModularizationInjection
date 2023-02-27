@@ -3,12 +3,39 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{12F3E3EB-33FF-4913-B260-C3372CF84470}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{67EE594C-E028-4B5D-859E-88268E8ABF8A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "solution items", "solution items", "{FA200DD7-18A4-4EC3-B1AB-FBDEA4A87D09}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cike.IOCModularizationInjection", "src\Cike.IOCModularizationInjection\Cike.IOCModularizationInjection.csproj", "{5C0D786F-ED53-469F-B247-073704DC080D}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cike.Utils", "src\Cike.Utils\Cike.Utils.csproj", "{483B0FDC-CBDF-4411-8831-FD185C170E55}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5C0D786F-ED53-469F-B247-073704DC080D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5C0D786F-ED53-469F-B247-073704DC080D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5C0D786F-ED53-469F-B247-073704DC080D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5C0D786F-ED53-469F-B247-073704DC080D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{483B0FDC-CBDF-4411-8831-FD185C170E55}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{483B0FDC-CBDF-4411-8831-FD185C170E55}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{483B0FDC-CBDF-4411-8831-FD185C170E55}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{483B0FDC-CBDF-4411-8831-FD185C170E55}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{5C0D786F-ED53-469F-B247-073704DC080D} = {12F3E3EB-33FF-4913-B260-C3372CF84470}
+		{483B0FDC-CBDF-4411-8831-FD185C170E55} = {12F3E3EB-33FF-4913-B260-C3372CF84470}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D4CA2A08-0D58-4753-BFDD-4C44EE97BC6F}
 	EndGlobalSection
 EndGlobal
