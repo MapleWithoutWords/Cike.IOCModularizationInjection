@@ -5,7 +5,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cike.IOCModularizationInjection.InjectionLifetimeAbstracts
+namespace Microsoft.Extensions.DependencyInjection
 {
     [AttributeUsage(AttributeTargets.Class)]
     public class InjectionAttribute : Attribute

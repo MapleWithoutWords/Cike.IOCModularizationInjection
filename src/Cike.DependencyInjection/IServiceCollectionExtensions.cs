@@ -1,4 +1,5 @@
-﻿using Cike.IOCModularizationInjection.InjectionLifetimeAbstracts;
+﻿using Cike.DependencyInjection;
+using Cike.DependencyInjection.Loader;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
@@ -8,19 +9,22 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cike.IOCModularizationInjection
+namespace Microsoft.Extensions.DependencyInjection
 {
     public static class IServiceCollectionExtensions
     {
         public static void AddModularizationInjection<TStartModule>(this IServiceCollection services) where TStartModule : class, IServiceInjectModule
         {
-            List<Type> allModuleTypes = new List<Type>();
-            typeof(TStartModule).FindModuleDependency(allModuleTypes);
-            allModuleTypes.Reverse();
+            services.AddSingleton(typeof(IModuleLoader), Activator.CreateInstance(typeof(ModuleLoader))!);
 
-            foreach (var moduleType in allModuleTypes)
+            var moduleLoader = services.GetSingleInstanceOrDefault<IModuleLoader>();
+
+            moduleLoader.Loader(typeof(TStartModule));
+            var allModuleTypes = moduleLoader.GetModuleDescriptors();
+
+            foreach (var moduleDescriptor in allModuleTypes)
             {
-                var moduleAssemblyTypes = moduleType.Assembly.GetTypes().Where(e => e.IsClass && e.IsAbstract == false);
+                var moduleAssemblyTypes = moduleDescriptor.ModuleAssembly.GetTypes().Where(e => e.IsClass && e.IsAbstract == false);
                 foreach (var type in moduleAssemblyTypes)
                 {
                     var serviceInfo = GetServiceLiftTime(type);
@@ -52,10 +56,12 @@ namespace Cike.IOCModularizationInjection
                     }
 
                 }
+
+                ((IServiceInjectModule)Activator.CreateInstance(moduleDescriptor.ModuleType)!)!.ConfigurationServices(services);
             }
         }
 
-        private static (ServiceLifetime? LifeTime, bool ReplaceService) GetServiceLiftTime(Type type)
+        public static (ServiceLifetime? LifeTime, bool ReplaceService) GetServiceLiftTime(Type type)
         {
             ServiceLifetime? lifeTime = null;
             bool isReplace = false;
@@ -80,28 +86,6 @@ namespace Cike.IOCModularizationInjection
             return (lifeTime, isReplace);
         }
 
-        public static void FindModuleDependency(this Type moduleType, List<Type> allModuleTypes)
-        {
-            if (typeof(IServiceInjectModule).IsAssignableFrom(moduleType) == false)
-            {
-                throw new ArgumentException($"modelType {moduleType.FullName} not a IServiceInjectModule.");
-            }
-            if (allModuleTypes.Contains(moduleType) == false)
-            {
-                return;
-            }
-            allModuleTypes.Add(moduleType);
-            var dependOnAttr = moduleType.GetCustomAttribute<DependOnAttribute>();
-            if (dependOnAttr == null)
-            {
-                return;
-            }
-
-            foreach (var item in dependOnAttr.GetServiceModuleType())
-            {
-                FindModuleDependency(item, allModuleTypes);
-            }
-        }
 
         /// <summary>
         /// replace implServiceType all interface service type.
@@ -118,6 +102,11 @@ namespace Cike.IOCModularizationInjection
                     services.Replace(new ServiceDescriptor(item, implServiceType, itemInterface.Lifetime));
                 }
             }
+        }
+
+        public static TService GetSingleInstanceOrDefault<TService>(this IServiceCollection services)
+        {
+            return (TService)services.FirstOrDefault(e => e.Lifetime == ServiceLifetime.Singleton && e.ServiceType == typeof(TService)).ImplementationInstance;
         }
     }
 }

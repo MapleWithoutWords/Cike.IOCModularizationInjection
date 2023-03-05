@@ -1,10 +1,9 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Cike.IOCModularizationInjection
+namespace Cike.DependencyInjection
 {
     public interface IServiceInjectModule
     {
-        public int Sort { get; set; }
         public Task ConfigurationServices(IServiceCollection services);
     }
 }
