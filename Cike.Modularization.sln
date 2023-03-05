@@ -24,8 +24,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cike.Modularization", "src\
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cike.Modularization.ApplicationInitialization", "src\Cike.Modularization.ApplicationInitialization\Cike.Modularization.ApplicationInitialization.csproj", "{44E9F906-F0AE-44A8-B9E3-D23DE4290932}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Project", "Project", "{79566A0A-746C-4D6E-8A2B-B258A4872407}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -67,7 +65,6 @@ Global
 		{766EA2E2-199A-4E24-A159-2BF6687D6BEC} = {67EE594C-E028-4B5D-859E-88268E8ABF8A}
 		{ECC73552-D988-4DCC-B795-F564AC6AD81C} = {12F3E3EB-33FF-4913-B260-C3372CF84470}
 		{44E9F906-F0AE-44A8-B9E3-D23DE4290932} = {12F3E3EB-33FF-4913-B260-C3372CF84470}
-		{79566A0A-746C-4D6E-8A2B-B258A4872407} = {12F3E3EB-33FF-4913-B260-C3372CF84470}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {D4CA2A08-0D58-4753-BFDD-4C44EE97BC6F}

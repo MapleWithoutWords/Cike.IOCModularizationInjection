@@ -8,13 +8,13 @@ namespace Cike.ModuleInject.TestService
     {
         public async Task ConfigurationServicesAsync(IServiceCollection services)
         {
-
+            // Add services to the container.
         }
 
 
         public async Task StartingAsync(IServiceProvider serviceProvider)
         {
-            throw new NotImplementedException();
+            // Do some things.For example:start a job.
         }
     }
 }

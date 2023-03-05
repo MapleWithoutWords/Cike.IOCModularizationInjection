@@ -11,14 +11,14 @@ namespace System
 {
     public static class IServiceProviderExtensions
     {
-        public static void AddModuleStarting<TStartType>(this IServiceProvider serviceProvider)
+        public static async Task AddModuleStartingAsync<TStartType>(this IServiceProvider serviceProvider)
         {
-            if ((typeof(TStartType) is IApplicationInitialization)==false)
+            if ((typeof(TStartType) is IApplicationInitialization) == false)
             {
                 throw new ArgumentException($"The 'TStartType' not inherit 'IApplicationInitialization'.");
             }
             var moduleLoader = ModuleLoaderFactory.GetOrCreate();
-            if (moduleLoader.GetModuleDescriptors().Count()<1)
+            if (moduleLoader.GetModuleDescriptors().Count() < 1)
             {
                 moduleLoader.Loader(typeof(TStartType));
             }
@@ -29,7 +29,7 @@ namespace System
             {
                 if (moduleDescriptor.ModuleType is IApplicationInitialization applicationInitialization)
                 {
-                    applicationInitialization.StartingAsync(serviceProvider).Wait();
+                    await applicationInitialization.StartingAsync(serviceProvider);
                 }
             }
 

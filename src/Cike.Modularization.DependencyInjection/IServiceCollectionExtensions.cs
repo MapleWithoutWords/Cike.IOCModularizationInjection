@@ -14,7 +14,7 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class IServiceCollectionExtensions
     {
-        public static void AddModuleInjection<TStartModule>(this IServiceCollection services) where TStartModule : class, IServiceInjectModule
+        public static async Task AddModuleInjectionAsync<TStartModule>(this IServiceCollection services) where TStartModule : class, IServiceInjectModule
         {
             services.AddSingleton(typeof(IModuleLoader), ModuleLoaderFactory.GetOrCreate());
 
@@ -58,8 +58,7 @@ namespace Microsoft.Extensions.DependencyInjection
                 }
 
                 var module = ((IServiceInjectModule)Activator.CreateInstance(moduleDescriptor.ModuleType)!);
-                module.ConfigurationServices(services);
-                module.ConfigurationServicesAsync(services).Wait();
+                await module.ConfigurationServicesAsync(services);
             }
         }
 

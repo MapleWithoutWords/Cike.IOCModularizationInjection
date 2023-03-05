@@ -1,7 +1,14 @@
 ﻿<Project>
 
   <PropertyGroup>
-    <Version>1.0.1</Version>
+	  <LangVersion>latest</LangVersion>
+	  <Version>1.0.1</Version>
+	  <Authors>James li</Authors>
+	  <Company>James li</Company>
+	  <PackageProjectUrl>https://github.com/MapleWithoutWords/Cike.Modularization</PackageProjectUrl>
+	  <PackageIcon>logo.png</PackageIcon>
+	  <RepositoryUrl>https://github.com/MapleWithoutWords/Cike.Modularization</RepositoryUrl>
+	  <RepositoryType>git</RepositoryType>
   </PropertyGroup>
 
 </Project>

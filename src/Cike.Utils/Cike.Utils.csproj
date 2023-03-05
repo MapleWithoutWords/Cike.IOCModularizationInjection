@@ -1,9 +1,35 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
+	  <TargetFramework>net6.0</TargetFramework>
+	  <Nullable>enable</Nullable>
+	  <ImplicitUsings>enable</ImplicitUsings>
+	  <OutputType>Library</OutputType>
+	  <Authors>$(Authors)</Authors>
+	  <Company>$(Company)</Company>
+	  <PackageProjectUrl>$(PackageProjectUrl)</PackageProjectUrl>
+	  <PackageIcon>$(PackageIcon)</PackageIcon>
+	  <RepositoryUrl>$(RepositoryUrl)</RepositoryUrl>
+	  <RepositoryType>$(RepositoryType)</RepositoryType>
+	  <Version>$(Version)</Version>
+	  <IsPackable>true</IsPackable>
+	  <Title>Cike.Utils</Title>
+	  <Description>this is utils libary</Description>
+	  <PackageLicenseFile>LICENSE</PackageLicenseFile>
   </PropertyGroup>
 
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
+
+	<ItemGroup>
+		<None Update="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

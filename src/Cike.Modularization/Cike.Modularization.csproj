@@ -1,9 +1,33 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
+	<PropertyGroup>
+		<TargetFramework>net6.0</TargetFramework>
+		<Nullable>enable</Nullable>
+		<ImplicitUsings>enable</ImplicitUsings>
+		<OutputType>Library</OutputType>
+		<Authors>$(Authors)</Authors>
+		<Company>$(Company)</Company>
+		<PackageProjectUrl>$(PackageProjectUrl)</PackageProjectUrl>
+		<PackageIcon>$(PackageIcon)</PackageIcon>
+		<RepositoryUrl>$(RepositoryUrl)</RepositoryUrl>
+		<RepositoryType>$(RepositoryType)</RepositoryType>
+		<Version>$(Version)</Version>
+		<IsPackable>true</IsPackable>
+		<Title>Cike.Modularization</Title>
+		<Description>this is use modularization method inject service and start application's a package,it can avoid Program class's too much content explosion.</Description>
+		<PackageLicenseFile>LICENSE</PackageLicenseFile>
+	</PropertyGroup>
+	<ItemGroup>
+		<None Include="..\..\LICENSE">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+		</None>
+	</ItemGroup>
 
-  <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
-
+	<ItemGroup>
+		<None Update="logo.png">
+			<Pack>True</Pack>
+			<PackagePath>\</PackagePath>
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
 </Project>

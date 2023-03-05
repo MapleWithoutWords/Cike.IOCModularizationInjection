@@ -11,6 +11,4 @@ namespace Cike.ModuleInject.TestService.Services
     {
         public Task<String> GetUserNameAsync(string userName);
     }
-
-
 }
