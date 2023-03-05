@@ -7,7 +7,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\src\Cike.DependencyInjection\Cike.DependencyInjection.csproj" />
+    <ProjectReference Include="..\..\src\Cike.Modularization.ApplicationInitialization\Cike.Modularization.ApplicationInitialization.csproj" />
+    <ProjectReference Include="..\..\src\Cike.Modularization.DependencyInjection\Cike.Modularization.DependencyInjection.csproj" />
   </ItemGroup>
 
 </Project>

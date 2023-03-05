@@ -5,7 +5,7 @@ using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cike.DependencyInjection
+namespace Cike.Modularization
 {
     public class ModuleDescriptor
     {

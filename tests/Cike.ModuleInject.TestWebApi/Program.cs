@@ -4,10 +4,11 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-builder.Services.AddModularizationInjection<WebApiModule>();
+builder.Services.AddModuleInjection<WebApiModule>();
 
 var app = builder.Build();
 
+app.Services.AddModuleStarting<WebApiModule>();
 // Configure the HTTP request pipeline.
 
 

@@ -1,5 +1,6 @@
-﻿using Cike.DependencyInjection;
-using Cike.DependencyInjection.Loader;
+﻿using Cike.DependencyInjection.Loader;
+using Cike.Modularization.DependencyInjection;
+using Cike.Modularization.Loader;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using System;
@@ -13,12 +14,11 @@ namespace Microsoft.Extensions.DependencyInjection
 {
     public static class IServiceCollectionExtensions
     {
-        public static void AddModularizationInjection<TStartModule>(this IServiceCollection services) where TStartModule : class, IServiceInjectModule
+        public static void AddModuleInjection<TStartModule>(this IServiceCollection services) where TStartModule : class, IServiceInjectModule
         {
-            services.AddSingleton(typeof(IModuleLoader), Activator.CreateInstance(typeof(ModuleLoader))!);
+            services.AddSingleton(typeof(IModuleLoader), ModuleLoaderFactory.GetOrCreate());
 
             var moduleLoader = services.GetSingleInstanceOrDefault<IModuleLoader>();
-
             moduleLoader.Loader(typeof(TStartModule));
             var allModuleTypes = moduleLoader.GetModuleDescriptors();
 
@@ -57,7 +57,9 @@ namespace Microsoft.Extensions.DependencyInjection
 
                 }
 
-                ((IServiceInjectModule)Activator.CreateInstance(moduleDescriptor.ModuleType)!)!.ConfigurationServices(services);
+                var module = ((IServiceInjectModule)Activator.CreateInstance(moduleDescriptor.ModuleType)!);
+                module.ConfigurationServices(services);
+                module.ConfigurationServicesAsync(services).Wait();
             }
         }
 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Cike.Modularization;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
@@ -9,18 +10,18 @@ namespace Cike.DependencyInjection.Loader
 {
     public class ModuleLoader : IModuleLoader
     {
-        private IList<ModuleDescriptor> moduleDescriptors = new List<ModuleDescriptor>();
+        private IList<ModuleDescriptor> _moduleDescriptors = new List<ModuleDescriptor>();
         public void Loader(Type startupModuleType)
         {
-            if (typeof(IServiceInjectModule).IsAssignableFrom(startupModuleType) == false)
+            if (typeof(ICikeModule).IsAssignableFrom(startupModuleType) == false)
             {
                 throw new ArgumentException($"modelType {startupModuleType.FullName} not a IServiceInjectModule.");
             }
-            if (moduleDescriptors.Any(e => e.ModuleType == startupModuleType))
+            if (_moduleDescriptors.Any(e => e.ModuleType == startupModuleType))
             {
                 return;
             }
-            moduleDescriptors.Add(new ModuleDescriptor(startupModuleType));
+            _moduleDescriptors.Add(new ModuleDescriptor(startupModuleType));
             var dependOnAttr = startupModuleType.GetCustomAttribute<DependOnAttribute>();
             if (dependOnAttr == null)
             {
@@ -35,7 +36,7 @@ namespace Cike.DependencyInjection.Loader
         }
         public IEnumerable<ModuleDescriptor> GetModuleDescriptors()
         {
-            return moduleDescriptors.Reverse();
+            return _moduleDescriptors.Reverse();
         }
     }
 }
